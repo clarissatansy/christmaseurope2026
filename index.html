@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎄</text></svg>">
 <style>
 :root{
@@ -157,21 +158,21 @@ nav.topnav .wrap{
 .sec-head.center{margin-left:auto;margin-right:auto;text-align:center;}
 
 /* ---------- MAP ---------- */
-.map-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:28px 24px 20px;box-shadow:var(--shadow);overflow-x:auto;margin-bottom:36px;}
-.map-card svg{display:block;min-width:640px;width:100%;height:auto;}
-.blob{fill:var(--gold);opacity:.08;stroke:var(--gold);stroke-width:1;stroke-opacity:.25;}
-.blob-label{font-family:'Inter',sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.14em;fill:var(--forest-mid);opacity:.55;}
-.map-route{fill:none;stroke:var(--gold);stroke-width:2.5;}
-.map-route.sleeper{stroke:var(--maroon);stroke-dasharray:7 6;}
-.map-route-label{font-family:'Inter',sans-serif;font-size:10.5px;fill:#8a7a52;text-anchor:middle;}
-.map-route-label.sleeper-label{fill:var(--maroon);font-weight:700;}
-.map-marker .ring{fill:none;stroke:var(--gold-light);stroke-width:2.5;opacity:0;transition:opacity .25s;}
-.map-marker.active .ring{opacity:1;}
-.map-marker .dot{fill:var(--paper);stroke:var(--gold);stroke-width:3;transition:fill .2s,stroke .2s;}
-.map-marker.active .dot{fill:var(--gold);stroke:var(--forest-dark);}
-.map-marker .map-label{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:700;fill:var(--forest-dark);text-anchor:middle;transition:fill .2s;}
-.map-marker.active .map-label{fill:var(--maroon);}
-.map-marker{cursor:default;}
+.map-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:16px 16px 20px;box-shadow:var(--shadow);margin-bottom:36px;}
+#route-map{height:460px;width:100%;border-radius:12px;background:var(--cream-alt);z-index:0;}
+.leaflet-city-marker{display:flex;align-items:center;gap:7px;white-space:nowrap;pointer-events:none;}
+.leaflet-city-marker .dot{
+  width:14px;height:14px;border-radius:50%;background:var(--paper);
+  border:3px solid var(--gold);box-shadow:0 1px 4px rgba(0,0,0,.25);
+  transition:background .2s,border-color .2s;flex:0 0 auto;
+}
+.leaflet-city-marker .label{
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:700;color:var(--forest-dark);
+  text-shadow:0 1px 3px var(--paper),0 -1px 3px var(--paper),1px 0 3px var(--paper),-1px 0 3px var(--paper);
+  transition:color .2s;
+}
+.leaflet-city-marker.active .dot{background:var(--gold);border-color:var(--forest-dark);}
+.leaflet-city-marker.active .label{color:var(--maroon);}
 .map-legend{display:flex;gap:22px;flex-wrap:wrap;padding:14px 4px 2px;font-size:.78rem;color:var(--ink-soft);}
 .map-legend span{display:inline-flex;align-items:center;gap:7px;}
 .map-legend .swatch{display:inline-block;width:22px;height:0;border-top:3px solid var(--gold);}
@@ -415,59 +416,7 @@ footer h4{color:var(--cream);font-size:1rem;margin-bottom:14px;}
     </div>
 
     <div class="map-card">
-      
-<svg viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Geographically-approximated map of the train route from Munich to Lucerne">
-  <g class="blobs">
-    <ellipse class="blob" cx="399" cy="205" rx="150" ry="150" transform="rotate(-20 399 205)"/>
-    <text class="blob-label" x="255" y="70">GERMANY</text>
-    <ellipse class="blob" cx="628" cy="118" rx="132" ry="80" transform="rotate(5 628 118)"/>
-    <text class="blob-label" x="558" y="40">CZECHIA</text>
-    <ellipse class="blob" cx="742" cy="262" rx="156" ry="88" transform="rotate(-10 742 262)"/>
-    <text class="blob-label" x="792" y="330">AUSTRIA</text>
-    <ellipse class="blob" cx="205" cy="337" rx="122" ry="82" transform="rotate(6 205 337)"/>
-    <text class="blob-label" x="88" y="400">SWITZERLAND</text>
-  </g>
-
-  <g class="routes">
-    <path class="map-route" d="M418,259 L380,154"/>
-    <text class="map-route-label" x="430" y="205">1h15</text>
-    <path class="map-route" d="M380,154 L634,103"/>
-    <text class="map-route-label" x="480" y="119">4h31, 1 change</text>
-    <path class="map-route" d="M634,103 L782,253"/>
-    <text class="map-route-label" x="735" y="170">4h12</text>
-    <path class="map-route sleeper" d="M782,253 L187,320"/>
-    <text class="map-route-label sleeper-label" x="580" y="300">🌙 Nightjet · via Innsbruck · ~12h</text>
-    <path class="map-route" d="M187,320 L170,346"/>
-  </g>
-
-  <g class="markers" font-family="Inter, sans-serif">
-    <g class="map-marker" data-city="munich" transform="translate(418,259)">
-      <circle class="ring" r="14"/><circle class="dot" r="7"/>
-      <text class="map-label" x="18" y="6" text-anchor="start">Munich</text>
-    </g>
-    <g class="map-marker" data-city="nuremberg" transform="translate(380,154)">
-      <circle class="ring" r="14"/><circle class="dot" r="7"/>
-      <text class="map-label" x="0" y="-18">Nuremberg</text>
-    </g>
-    <g class="map-marker" data-city="prague" transform="translate(634,103)">
-      <circle class="ring" r="14"/><circle class="dot" r="7"/>
-      <text class="map-label" x="0" y="-18">Prague</text>
-    </g>
-    <g class="map-marker" data-city="vienna" transform="translate(782,253)">
-      <circle class="ring" r="14"/><circle class="dot" r="7"/>
-      <text class="map-label" x="0" y="24">Vienna</text>
-    </g>
-    <g class="map-marker" data-city="zurich" transform="translate(187,320)">
-      <circle class="ring" r="14"/><circle class="dot" r="7"/>
-      <text class="map-label" x="-14" y="-18" text-anchor="end">Zurich</text>
-    </g>
-    <g class="map-marker" data-city="lucerne" transform="translate(170,346)">
-      <circle class="ring" r="14"/><circle class="dot" r="7"/>
-      <text class="map-label" x="0" y="30">Lucerne</text>
-    </g>
-  </g>
-</svg>
-
+      <div id="route-map" role="img" aria-label="Map of the train route from Munich to Lucerne"></div>
       <div class="map-legend">
         <span><span class="swatch"></span> Direct train</span>
         <span><span class="swatch sleeper"></span> Nightjet sleeper (overnight)</span>
@@ -874,26 +823,89 @@ footer h4{color:var(--cream);font-size:1rem;margin-bottom:14px;}
     </div>
   </div>
 </footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+
+var routeMap = L.map('route-map', { scrollWheelZoom:false, attributionControl:true });
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 18,
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(routeMap);
+
+var cityCoords = {"munich": [48.1351, 11.582], "nuremberg": [49.4521, 11.0767], "prague": [50.0755, 14.4378], "vienna": [48.2082, 16.3738], "zurich": [47.3769, 8.5417], "lucerne": [47.0502, 8.3093]};
+var cityNames = {"munich": "Munich", "nuremberg": "Nuremberg", "prague": "Prague", "vienna": "Vienna", "zurich": "Zurich", "lucerne": "Lucerne"};
+
+var routeMarkers = {};
+Object.keys(cityCoords).forEach(function(key){
+  var icon = L.divIcon({
+    className: '',
+    html: '<div class="leaflet-city-marker" data-city="' + key + '"><span class="dot"></span><span class="label">' + cityNames[key] + '</span></div>',
+    iconSize: [140, 20],
+    iconAnchor: [7, 10]
+  });
+  routeMarkers[key] = L.marker(cityCoords[key], { icon: icon, keyboard:false }).addTo(routeMap);
+});
+
+var trainStyle = { color: '#c8973f', weight: 3, opacity: 0.9 };
+var sleeperStyle = { color: '#7c2735', weight: 3, opacity: 0.9, dashArray: '8 7' };
+
+var legs = [
+  ['munich', 'nuremberg', trainStyle, 'Munich → Nuremberg · ~1h15, direct'],
+  ['nuremberg', 'prague', trainStyle, 'Nuremberg → Prague · ~4h31, 1 change'],
+  ['prague', 'vienna', trainStyle, 'Prague → Vienna · ~4h12, direct Railjet'],
+  ['vienna', 'zurich', sleeperStyle, '🌙 Nightjet sleeper · via Innsbruck · ~11–13h'],
+  ['zurich', 'lucerne', trainStyle, 'Zurich → Lucerne · ~41–46 min, direct']
+];
+legs.forEach(function(leg){
+  L.polyline([cityCoords[leg[0]], cityCoords[leg[1]]], leg[2])
+    .addTo(routeMap)
+    .bindTooltip(leg[3], { sticky: true });
+});
+
+var allBounds = L.latLngBounds(Object.values(cityCoords));
+routeMap.fitBounds(allBounds, { padding: [36, 36] });
+
+window.__routeMapMarkers = routeMarkers;
+window.__routeMapInstance = routeMap;
+
+</script>
 
 <script>
 (function(){
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.itin-tab'));
   var panels = Array.prototype.slice.call(document.querySelectorAll('.itin-panel'));
-  var markers = Array.prototype.slice.call(document.querySelectorAll('.map-marker'));
+  var routeMarkers = window.__routeMapMarkers || {};
+  var routeMap = window.__routeMapInstance;
+
+  function markerEl(key){
+    var m = routeMarkers[key];
+    if (!m || !m.getElement()) return null;
+    return m.getElement().querySelector('.leaflet-city-marker');
+  }
+
   tabs.forEach(function(tab){
     tab.addEventListener('click', function(){
       tabs.forEach(function(t){ t.classList.remove('active'); });
       panels.forEach(function(p){ p.classList.remove('active'); });
-      markers.forEach(function(m){ m.classList.remove('active'); });
+      Object.keys(routeMarkers).forEach(function(key){
+        var el = markerEl(key);
+        if (el) el.classList.remove('active');
+      });
       tab.classList.add('active');
       var panel = document.getElementById(tab.getAttribute('data-panel'));
       if (panel) panel.classList.add('active');
       var cities = (tab.getAttribute('data-city') || '').split(' ').filter(Boolean);
+      var latlngs = [];
       cities.forEach(function(city){
-        markers.forEach(function(m){
-          if (m.getAttribute('data-city') === city) m.classList.add('active');
-        });
+        var el = markerEl(city);
+        if (el) el.classList.add('active');
+        if (routeMarkers[city]) latlngs.push(routeMarkers[city].getLatLng());
       });
+      if (routeMap && latlngs.length === 1) {
+        routeMap.setView(latlngs[0], 8);
+      } else if (routeMap && latlngs.length > 1) {
+        routeMap.fitBounds(L.latLngBounds(latlngs), { padding: [60, 60], maxZoom: 8 });
+      }
     });
   });
 })();
