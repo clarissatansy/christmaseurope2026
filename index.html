@@ -284,6 +284,27 @@ td.status-closed{color:#a05a3a;font-weight:700;}
 .food-card h4{font-size:1.05rem;margin:4px 0 6px;}
 .food-card p{font-size:.86rem;color:var(--ink-soft);margin:0;}
 
+/* ---------- HOTELS ---------- */
+.hotel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media (max-width:900px){.hotel-grid{grid-template-columns:1fr;}}
+.hotel-card{
+  display:block;border-radius:14px;overflow:hidden;background:var(--paper);
+  box-shadow:var(--shadow);text-decoration:none;color:inherit;
+  transition:transform .15s;
+}
+.hotel-card:hover{transform:translateY(-3px);}
+.hotel-card .himg{position:relative;}
+.hotel-card img{width:100%;aspect-ratio:4/3;object-fit:cover;}
+.hotel-card .hcap{padding:18px 18px 20px;}
+.hotel-card .hotel-name{font-family:'Playfair Display',serif;font-size:1.12rem;color:var(--forest-dark);margin-bottom:6px;line-height:1.25;}
+.hotel-card .hotel-price{font-size:1.35rem;font-weight:700;color:var(--forest-mid);}
+.hotel-card .hotel-price .cur{font-size:.7rem;font-weight:700;color:var(--gold);letter-spacing:.06em;margin-right:4px;vertical-align:middle;}
+.hotel-card .hotel-sub{font-size:.76rem;color:var(--ink-soft);margin-top:2px;}
+.hotel-card .hotel-cta{
+  display:inline-flex;align-items:center;gap:5px;margin-top:12px;font-size:.8rem;font-weight:600;
+  color:var(--forest-mid);border-bottom:1px solid var(--gold);padding-bottom:1px;
+}
+
 /* ---------- OPEN QUESTIONS ---------- */
 .checklist{list-style:none;padding:0;margin:0;display:grid;gap:14px;}
 .checklist li{
@@ -339,6 +360,7 @@ footer h4{color:var(--cream);font-size:1rem;margin-bottom:14px;}
       <a href="#route">Route</a>
       <a href="#itinerary">Itinerary</a>
       <a href="#munich">Munich</a>
+      <a href="#hotels">Hotels</a>
       <a href="#nuremberg">Nuremberg</a>
       <a href="#prague">Prague</a>
       <a href="#vienna">Vienna</a>
@@ -514,6 +536,46 @@ footer h4{color:var(--cream);font-size:1rem;margin-bottom:14px;}
         <ul class="hi"><li>Christkindlmarkt am Marienplatz — over 130 stalls beneath the Neues Rathaus, with Advent music from the town hall balcony</li><li>Frauenkirche and the old town — the twin-domed skyline that defines Munich</li><li>Purpose-built as a proper first stop, not just a transit buffer — both markets and old-town wandering fit comfortably in 2 days</li></ul>
         <div class="specialty-row"><span class="spec-chip">Christkindlmarkt</span><span class="spec-chip">Marienplatz</span><span class="spec-chip">Frauenkirche</span></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight" id="hotels" style="background:var(--cream-alt);">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Where to Stay</div>
+      <h2>Munich hotel options</h2>
+      <p>Three options near Munich's centre for the Dec 15–17 stay (2 adults, 1 room). Prices are per night in USD, before taxes, pulled live from Agoda — they change constantly, so treat these as a starting point and confirm on click-through.</p>
+    </div>
+    <div class="hotel-grid">
+      
+      <a class="hotel-card" href="https://www.agoda.com/en-gb/smart-stay-hotel-station/hotel/munich-de.html?countryId=101&finalPriceView=1&isShowMobileAppPrice=false&cid=1922889&numberOfBedrooms=&familyMode=false&adults=2&children=0&rooms=1&maxRooms=0&checkIn=2026-12-15&isCalendarCallout=false&childAges=&numberOfGuest=0&missingChildAges=false&travellerType=1&showReviewSubmissionEntry=false&currencyCode=USD&isFreeOccSearch=false&tag=3a518944-36fd-49e2-a05d-91bfa4a414a6&los=2&searchrequestid=a8e2505a-51e5-4200-ac9e-eb2874163218&ds=tuved%2FoYefzcsO%2Fm" target="_blank" rel="noopener">
+        <div class="himg"><img src="https://pix8.agoda.net/hotelImages/117289/3174373/ce912173a8eb66b7f9f0f946ed11b005.jpg?va=1&ce=0&s=800x600" alt="Smart Stay Hotel Station" loading="lazy"></div>
+        <div class="hcap">
+          <div class="hotel-name">Smart Stay Hotel Station</div>
+          <div class="hotel-sub">Ludwigsvorstadt, near Hauptbahnhof · 2-star</div>
+          <div class="hotel-price"><span class="cur">USD</span>60 <span style="font-size:.7rem;font-weight:500;color:var(--ink-soft);">/ night</span></div>
+          <span class="hotel-cta">View &amp; book on Agoda ↗</span>
+        </div>
+      </a>
+      <a class="hotel-card" href="https://www.agoda.com/en-gb/novum-hotel-munchen-am-hauptbahnhof/hotel/munich-de.html?countryId=101&finalPriceView=1&isShowMobileAppPrice=false&cid=1922889&numberOfBedrooms=&familyMode=false&adults=2&children=0&rooms=1&maxRooms=0&checkIn=2026-12-15&isCalendarCallout=false&childAges=&numberOfGuest=0&missingChildAges=false&travellerType=1&showReviewSubmissionEntry=false&currencyCode=USD&isFreeOccSearch=false&tag=3a518944-36fd-49e2-a05d-91bfa4a414a6&tspTypes=7%2C2&los=2&searchrequestid=a8e2505a-51e5-4200-ac9e-eb2874163218&ds=tuved%2FoYefzcsO%2Fm" target="_blank" rel="noopener">
+        <div class="himg"><img src="https://pix8.agoda.net/property/937/349381863/525658af7fe0ca17c2e39de5187c141c.jpeg?va=1&ce=0&s=800x600" alt="Sure Hotel by Best Western München Hauptbahnhof" loading="lazy"></div>
+        <div class="hcap">
+          <div class="hotel-name">Sure Hotel by Best Western München Hauptbahnhof</div>
+          <div class="hotel-sub">Hauptbahnhof · 3-star · formerly Novum Hotel München am Hauptbahnhof</div>
+          <div class="hotel-price"><span class="cur">USD</span>82 <span style="font-size:.7rem;font-weight:500;color:var(--ink-soft);">/ night</span></div>
+          <span class="hotel-cta">View &amp; book on Agoda ↗</span>
+        </div>
+      </a>
+      <a class="hotel-card" href="https://www.agoda.com/en-gb/hotel-amba/hotel/munich-de.html?countryId=101&finalPriceView=1&isShowMobileAppPrice=false&cid=1922889&numberOfBedrooms=&familyMode=false&adults=2&children=0&rooms=1&maxRooms=0&checkIn=2026-12-15&isCalendarCallout=false&childAges=&numberOfGuest=0&missingChildAges=false&travellerType=1&showReviewSubmissionEntry=false&currencyCode=USD&isFreeOccSearch=false&tag=3a518944-36fd-49e2-a05d-91bfa4a414a6&tspTypes=9&los=2&searchrequestid=a8e2505a-51e5-4200-ac9e-eb2874163218&ds=tuved%2FoYefzcsO%2Fm" target="_blank" rel="noopener">
+        <div class="himg"><img src="https://pix8.agoda.net/property/185742/349794450/ced380d440d19bab971cab2d1cbb0683.jpeg?va=1&ce=0&s=800x600" alt="Hotel Amba" loading="lazy"></div>
+        <div class="hcap">
+          <div class="hotel-name">Hotel Amba</div>
+          <div class="hotel-sub">Munich city centre</div>
+          <div class="hotel-price"><span class="cur">USD</span>82 <span style="font-size:.7rem;font-weight:500;color:var(--ink-soft);">/ night</span></div>
+          <span class="hotel-cta">View &amp; book on Agoda ↗</span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
