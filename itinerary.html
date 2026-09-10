@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day by Day — Christmas Across Europe</title>
+<meta name="description" content="The hour-by-hour itinerary, Munich to Frankfurt, Dec 18 2026 – Jan 6 2027, with closures, holidays and day trips flagged.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎄</text></svg>">
+<style>
+:root{
+  --forest:#0e3a2c; --forest-dark:#082019; --forest-mid:#134839;
+  --cream:#faf5e9; --cream-alt:#f2e9d5; --gold:#c8973f; --gold-light:#e6c775;
+  --maroon:#7c2735; --ink:#1c1712; --ink-soft:#4a4139; --paper:#fffdf8; --line:#e4d7bb;
+  --shadow: 0 20px 50px -20px rgba(10,20,15,.35);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;margin:0 0 .4em;color:var(--forest-dark);font-weight:700;}
+p{margin:0 0 1em;}
+a{color:var(--forest-mid);}
+.wrap{max-width:1000px;margin:0 auto;padding:0 28px;}
+.eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;font-weight:700;color:var(--gold);}
+
+nav.topnav{position:sticky;top:0;z-index:50;background:rgba(8,32,25,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(230,199,117,.18);}
+nav.topnav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;}
+.brand{font-family:'Playfair Display',serif;color:var(--cream);font-weight:700;font-size:1.05rem;display:flex;align-items:center;gap:8px;}
+.brand .dot{color:var(--gold-light);}
+.navlinks{display:flex;gap:22px;flex-wrap:wrap;}
+.navlinks a{color:var(--cream-alt);text-decoration:none;font-size:.83rem;letter-spacing:.03em;opacity:.82;transition:opacity .15s,color .15s;}
+.navlinks a:hover,.navlinks a.active{opacity:1;color:var(--gold-light);}
+@media (max-width:820px){.navlinks{display:none;}}
+
+header.page-head{background:var(--forest-dark);color:var(--cream);padding:64px 0 54px;}
+header.page-head .eyebrow{color:var(--gold-light);}
+header.page-head h1{color:var(--cream);font-size:clamp(2rem,5vw,3.2rem);margin-top:10px;}
+header.page-head p{color:var(--cream-alt);max-width:54em;margin-top:12px;}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.86rem;color:var(--cream-alt);margin-top:16px;}
+.meta-row b{color:var(--gold-light);}
+
+.section{padding:56px 0;}
+
+.city-group{margin-bottom:8px;}
+.city-heading{display:flex;align-items:baseline;gap:12px;margin:38px 0 6px;}
+.city-heading:first-of-type{margin-top:0;}
+.city-heading .name{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--forest-dark);}
+.city-heading .span{font-size:.8rem;color:var(--ink-soft);font-weight:600;}
+.city-heading .rule{flex:1;height:1px;background:var(--line);}
+
+.day-row{display:grid;grid-template-columns:96px 1fr;gap:20px;padding:16px 0;border-top:1px solid var(--line);}
+.city-group .day-row:first-of-type{border-top:none;}
+.day-date{font-weight:700;font-size:.9rem;color:var(--forest-mid);padding-top:1px;line-height:1.3;}
+.day-date .sub{display:block;font-weight:500;font-size:.72rem;color:var(--ink-soft);margin-top:2px;}
+.day-title{font-weight:700;font-size:1rem;margin-bottom:4px;color:var(--ink);}
+.day-title .tag{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--forest-mid);background:rgba(19,72,57,.1);padding:2px 8px;border-radius:4px;margin-right:8px;position:relative;top:-1px;}
+.day-plan{font-size:.94rem;color:var(--ink-soft);margin:0 0 8px;}
+.day-flags{display:flex;flex-wrap:wrap;gap:6px;}
+.flag{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.flag::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;}
+.flag.ok{color:#2c7a4b;background:rgba(44,122,75,.12);}
+.flag.warn{color:#a05a3a;background:rgba(160,90,58,.12);}
+@media (max-width:560px){.day-row{grid-template-columns:74px 1fr;gap:12px;}}
+
+.nights-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+@media (max-width:640px){.nights-strip{grid-template-columns:repeat(4,1fr);}}
+.nights-cell{background:var(--paper);padding:14px 8px;text-align:center;}
+.nights-cell .n{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--gold);}
+.nights-cell .c{font-size:.7rem;color:var(--ink-soft);margin-top:2px;}
+.nights-total{font-size:.9rem;color:var(--ink-soft);margin-top:14px;}
+.nights-total b{color:var(--ink);}
+
+.qlist{list-style:none;margin:0;padding:0;display:grid;gap:10px;}
+.qlist li{padding:14px 18px;border-left:3px solid var(--gold);background:var(--paper);border:1px solid var(--line);border-left-width:3px;border-radius:0 10px 10px 0;font-size:.92rem;color:var(--ink-soft);}
+.qlist b{color:var(--ink);}
+
+footer{background:var(--forest-dark);color:rgba(250,245,233,.6);padding:48px 0 40px;font-size:.8rem;}
+footer a{color:rgba(230,199,117,.9);}
+.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+</style>
+</head>
+<body>
+<nav class="topnav">
+  <div class="wrap">
+    <div class="brand"><span>🎄</span> Munich <span class="dot">→</span> Frankfurt <span class="dot">·</span> Dec 2026</div>
+    <div class="navlinks">
+      <a href="index.html">Overview</a>
+      <a href="index.html#route">Route</a>
+      <a href="itinerary.html" class="active">Day by day</a>
+      <a href="budget.html">Budget</a>
+      <a href="index.html#frankfurt">Frankfurt</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">Day by Day</div>
+    <h1>The full itinerary</h1>
+    <p>Munich in, Frankfurt out — the trip laid out day by day, with closures, public holidays and day trips flagged where they matter. The overview page has the map and the city guides; this is the running order.</p>
+    <div class="meta-row">
+      <span><b>Dec 18</b> → <b>Jan 6</b></span>
+      <span><b>19</b> nights</span>
+      <span><b>8</b> cities</span>
+      <span><b>5</b> countries</span>
+      <span><b>1</b> Nightjet sleeper</span>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+
+    <div class="city-group">
+      <div class="city-heading"><span class="name">Munich</span><span class="rule"></span><span class="span">Dec 18–20 · 2 nights</span></div>
+      <div class="day-row">
+        <div class="day-date">Dec 18<span class="sub">Fri</span></div>
+        <div class="day-body">
+          <div class="day-title">Arrival</div>
+          <p class="day-plan">Both flights connect once — Clar via London, Irvin via Dubai — landing around midday. Settle in, then the Christkindlmarkt on Marienplatz in the evening.</p>
+          <div class="day-flags"><span class="flag ok">Market open · runs to Dec 24</span></div>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-date">Dec 19<span class="sub">Sat</span></div>
+        <div class="day-body">
+          <div class="day-title">Munich, full day</div>
+          <p class="day-plan">Frauenkirche and the old town, Residenz or the Viktualienmarkt. Nymphenburg Palace if there's an appetite for a second sight.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="city-group">
+      <div class="city-heading"><span class="name">Nuremberg</span><span class="rule"></span><span class="span">Dec 20–22 · 2 nights</span></div>
+      <div class="day-row">
+        <div class="day-date">Dec 20<span class="sub">Sun</span></div>
+        <div class="day-body">
+          <div class="day-title"><span class="tag">Travel</span>Munich → Nuremberg</div>
+          <p class="day-plan">~1h15 direct ICE, arrive early afternoon — evening at the Christkindlesmarkt. <strong>Interrail pass activates today.</strong></p>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-date">Dec 21<span class="sub">Mon</span></div>
+        <div class="day-body">
+          <div class="day-title">Nuremberg, full day</div>
+          <p class="day-plan">Nuremberg Castle, the city walls, bratwurst and lebkuchen.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="city-group">
+      <div class="city-heading"><span class="name">Prague</span><span class="rule"></span><span class="span">Dec 22–25 · 3 nights</span></div>
+      <div class="day-row">
+        <div class="day-date">Dec 22<span class="sub">Tue</span></div>
+        <div class="day-body">
+          <div class="day-title"><span class="tag">Travel</span>Nuremberg → Prague</div>
+          <p class="day-plan">~4h31, one change (via Schwandorf) — evening at the Old Town Square market.</p>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-date">Dec 23<span class="sub">Wed</span></div>
+        <div class="day-body">
+          <div class="day-title">Prague Castle</div>
+          <p class="day-plan">The clean day for it — the whole complex is closed tomorrow. St Vitus, the Golden Lane, the castle views over the Vltava.</p>
+          <div class="day-flags"><span class="flag warn">Castle closed Dec 24 — must be today</span></div>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-date">Dec 24<span class="sub">Christmas Eve</span></div>
+        <div class="day-body">
+          <div class="day-title">Štědrý večer</div>
+          <p class="day-plan">A quiet market morning, Charles Bridge at dusk, and a traditional carp dinner for the main Czech family night.</p>
+          <div class="day-flags"><span class="flag warn">Market ~10:00–14:00 only</span><span class="flag warn">Many restaurants close early — book ahead</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="city-group">
+      <div class="city-heading"><span class="name">Vienna</span><span class="rule"></span><span class="span">Dec 25–27 · 2 nights + sleeper</span></div>
+      <div class="day-row">
+        <div class="day-date">Dec 25<span class="sub">Christmas Day</span></div>
+        <div class="day-body">
+          <div class="day-title"><span class="tag">Travel</span>Prague → Vienna</div>
+          <p class="day-plan">~4h12 direct Railjet — afternoon at Schönbrunn, which stays open on Christmas Day itself, or the Schönbrunn market.</p>
+          <div class="day-flags"><span class="flag ok">Schönbrunn Palace open, 8:30–17:00</span><span class="flag ok">Schönbrunn market runs into January</span></div>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-date">Dec 26<span class="sub">Stefanitag</span></div>
+        <div class="day-body">
+          <div class="day-title"><span class="tag">Day trip</span>Bratislava</div>
+          <p class="day-plan">~1hr each way by train — a second country's Christmas market for the cost of an afternoon, on the day Vienna itself goes quiet.</p>
+          <div class="day-flags"><span class="flag ok">Bratislava market open — runs into January</span></div>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-date">Dec 27<span class="sub">Sun</span></div>
+        <div class="day-body">
+          <div class="day-title">Belvedere, then the sleeper</div>
+          <p class="day-plan">Free morning and the Belvedere, then board the Nightjet that evening. Pack an overnight bag separately.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="city-group">
+      <div class="city-heading"><span class="name">Nightjet</span><span class="rule"></span><span class="span">Dec 27 night → Dec 28</span></div>
+      <div class="day-row">
+        <div class="day-date">Dec 27<span class="sub">night</span></div>
+        <div class="day-body">
+          <div class="day-title">Vienna → Zurich, via Innsbruck</div>
+          <p class="day-plan">Private compartment. Depart ~21:30–21:40, arrive Zurich ~07:50–10:30 the next morning. Breakfast to the cabin.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="city-group">
+      <div class="city-heading"><span class="name">Zurich</span><span class="rule"></span><span class="span">Dec 28–30 · 2 nights</span></div>
+      <div class="day-row">
+        <div class="day-date">Dec 28<span class="sub">Mon</span></div>
+        <div class="day-body">
+          <div class="day-title"><span class="tag">Day trip</span>Grindelwald, Interlaken &amp; Lauterbrunnen</div>
+          <p class="day-plan">Full-day guided trip, straight off the overnight train — the extra Zurich night (moved here from Lucerne) is what makes it possible.</p>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-date">Dec 29<span class="sub">Tue</span></div>
+        <div class="day-body">
+          <div class="day-title">Zurich, easier pace</div>
+          <p class="day-plan">Lake walk, Niederdorf, or the Rhine Falls if there's energy left.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="city-group">
+      <div class="city-heading"><span class="name">Lucerne</span><span class="rule"></span><span class="span">Dec 30 – Jan 3 · 4 nights</span></div>
+      <div class="day-row">
+        <div class="day-date">Dec 30<span class="sub">Wed</span></div>
+        <div class="day-body">
+          <div class="day-title"><span class="tag">Travel</span>Zurich → Lucerne, then Mount Titlis</div>
+          <p class="day-plan">~41 min train, then Engelberg (~45 min further) for the snow-mountain day.</p>
+          <div class="day-flags"><span class="flag warn">Titlis in for Pilatus — Pilatus's cogwheel train runs May–Nov only</span></div>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-date">Dec 31<span class="sub">New Year's Eve</span></div>
+        <div class="day-body">
+          <div class="day-title">Museum day, then the lake</div>
+          <p class="day-plan">Swiss Museum of Transport or the Chocolate Adventure by day; a fondue or winter cruise on Lake Lucerne that evening, then fireworks over the water.</p>
+          <div class="day-flags"><span class="flag warn">NYE cruise sailing times / advance booking not yet checked</span></div>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-date">Jan 1<span class="sub">New Year's Day</span></div>
+        <div class="day-body">
+          <div class="day-title">Mount Rigi + Kaltbad spa</div>
+          <p class="day-plan">A hike-and-soak recovery day — Rigi runs year-round, unlike Pilatus, and the Kaltbad thermal spa is a winter draw.</p>
+          <div class="day-flags"><span class="flag warn">Not yet confirmed for this exact date — winter timetable not published</span></div>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-date">Jan 2<span class="sub">Berchtoldstag</span></div>
+        <div class="day-body">
+          <div class="day-title">Easy Lucerne day</div>
+          <p class="day-plan">Chapel Bridge, the old town, the Lion Monument — nothing demanding. Pack for the early start tomorrow.</p>
+          <div class="day-flags"><span class="flag warn">Public holiday in the Lucerne &amp; Zurich cantons — quieter than usual</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="city-group">
+      <div class="city-heading"><span class="name">Strasbourg</span><span class="rule"></span><span class="span">Jan 3 · day visit, no overnight</span></div>
+      <div class="day-row">
+        <div class="day-date">Jan 3<span class="sub">Sat</span></div>
+        <div class="day-body">
+          <div class="day-title"><span class="tag">Travel + day</span>Lucerne → Basel → Strasbourg → Frankfurt</div>
+          <p class="day-plan">Morning: Lucerne to Basel SBB (~1h), then across to Strasbourg (~30–75 min). Bags at the station. Afternoon: Strasbourg Cathedral and the astronomical clock, La Petite France, then Parc de l'Orangerie, with an Alsatian lunch in between. Evening: train on to Frankfurt (~1h50 direct ICE).</p>
+          <div class="day-flags"><span class="flag warn">Christkindelsmärik ended Dec 24 — old town, not a market stop</span><span class="flag warn">TGV / ICE legs need seat reservations</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="city-group">
+      <div class="city-heading"><span class="name">Frankfurt</span><span class="rule"></span><span class="span">Jan 3–6 · 3 nights</span></div>
+      <div class="day-row">
+        <div class="day-date">Jan 4<span class="sub">Sun</span></div>
+        <div class="day-body">
+          <div class="day-title">Old town &amp; the Main</div>
+          <p class="day-plan">Römerberg and the reconstructed Altstadt, the Kaiserdom, the Museumsufer along the river (Städel, Senckenberg), Kleinmarkthalle for lunch. Evening in the Bahnhofsviertel — Berbere at African Queen, or Oosten on the riverfront.</p>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-date">Jan 5<span class="sub">Mon</span></div>
+        <div class="day-body">
+          <div class="day-title">Höchst, the Stadtwald, or a day trip</div>
+          <p class="day-plan">The half-timbered Höchst old town (short S-Bahn ride) and a walk in the Stadtwald with the Goetheturm; or a train day trip to Heidelberg (~1h), Rüdesheim / the Rhine Gorge (~1h), or Mainz (~40 min). Coffee at Chinaski Tagesbar.</p>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-date">Jan 6<span class="sub">Epiphany · Wed</span></div>
+        <div class="day-body">
+          <div class="day-title">Fly home from FRA</div>
+          <p class="day-plan">Irvin departs FRA ~09:40 (via Dubai); Clar departs ~10:40 (via Atlanta). Early check-out.</p>
+          <div class="day-flags"><span class="flag ok">Epiphany is not a public holiday in Hesse — Frankfurt runs normally</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" style="background:var(--cream-alt);">
+  <div class="wrap">
+    <div class="eyebrow">Reference</div>
+    <h2>Nights</h2>
+    <div class="nights-strip">
+      <div class="nights-cell"><div class="n">2</div><div class="c">Munich</div></div>
+      <div class="nights-cell"><div class="n">2</div><div class="c">Nuremberg</div></div>
+      <div class="nights-cell"><div class="n">3</div><div class="c">Prague</div></div>
+      <div class="nights-cell"><div class="n">2</div><div class="c">Vienna</div></div>
+      <div class="nights-cell"><div class="n">2</div><div class="c">Zurich</div></div>
+      <div class="nights-cell"><div class="n">4</div><div class="c">Lucerne</div></div>
+      <div class="nights-cell"><div class="n">3</div><div class="c">Frankfurt</div></div>
+    </div>
+    <p class="nights-total">18 hotel nights + 1 aboard the Nightjet = <b>19 nights</b> (Dec 18 → Jan 6). Strasbourg is a day visit with no overnight. Both travellers are on the same schedule.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow">Before it's booked</div>
+    <h2>Still unconfirmed</h2>
+    <ul class="qlist">
+      <li><b>Mount Rigi &amp; the Kaltbad spa on Jan 1</b> — Rigi runs year-round and the spa is a winter draw, but the Dec–Mar timetable and the spa's booking calendar for that date aren't published yet. Re-check in Oct/Nov.</li>
+      <li><b>New Year's Eve fondue / winter cruise</b> — sailing times and whether a NYE sailing needs advance booking haven't been checked.</li>
+      <li><b>Lucerne → Basel → Strasbourg and Strasbourg → Frankfurt trains</b> — exact services and the seat/Nightjet reservations (extra on top of the Interrail pass) still to be booked.</li>
+      <li><b>Irvin's return</b> is Jan 6 (arrives Singapore Jan 7), per the Emirates booking — the earlier "to Jan 5" note is superseded.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-bottom">
+    <span>Christmas Across Europe · Day by day · Dec 18, 2026 – Jan 6, 2027</span>
+    <span><a href="index.html">← Back to the overview</a></span>
+  </div>
+</footer>
+</body>
+</html>
